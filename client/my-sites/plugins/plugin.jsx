@@ -84,9 +84,9 @@ export default React.createClass( {
 		}
 
 		const allSites = uniq( props.sites.getSelectedOrAllWithPlugins() ),
-			sites = props.isWpcomPlugin ?
-				reject( allSites, property( 'jetpack' ) ) :
-				filter( allSites, property( 'jetpack' ) ),
+			sites = props.isWpcomPlugin
+				? reject( allSites, property( 'jetpack' ) )
+				: filter( allSites, property( 'jetpack' ) ),
 			sitePlugin = PluginsStore.getPlugin( sites, props.pluginSlug );
 
 		let plugin = Object.assign( {
@@ -249,7 +249,7 @@ export default React.createClass( {
 			canUpdateFiles: true,
 			name: 'Not a real site',
 			options: {
-				'software_version': 1
+				software_version: 1
 			}
 		}
 		return (

@@ -7,12 +7,11 @@ import i18n from 'lib/mixins/i18n';
 /**
  * Internal dependencies
  */
-import Card from 'components/card';
+
 import Gridicon from 'components/gridicon';
 import Rating from 'components/rating';
 import PluginVersion from 'my-sites/plugins/plugin-version';
 import PluginRatings from 'my-sites/plugins/plugin-ratings/';
-import SectionHeader from 'components/section-header';
 import analytics from 'analytics';
 
 export default React.createClass( {
