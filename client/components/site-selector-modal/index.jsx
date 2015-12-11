@@ -42,8 +42,8 @@ var SiteSelectorModal = React.createClass( {
 		} );
 	},
 
-	setSite: function( event ) {
-		var site = sitesList.getSite( parseInt( event.target.value ) );
+	setSite: function( slug ) {
+		var site = sitesList.getSite( slug );
 		this.setState( { site: site } );
 	},
 
@@ -79,12 +79,9 @@ var SiteSelectorModal = React.createClass( {
 				<div className="site-selector-modal__content">
 					{ this.props.children }
 				</div>
-				<SelectSite className="site-selector-modal__dropdown"
-					sites={ sitesList }
-					value={ this.state.site && this.state.site.ID }
-					onChange={ this.setSite }
+				<SitesDropdown
+					onSiteSelect={ this.setSite }
 					filter={ this.props.filter } />
-
 			</Dialog>
 		);
 	}
