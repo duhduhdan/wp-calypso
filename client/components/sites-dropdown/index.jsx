@@ -30,7 +30,8 @@ export default React.createClass( {
 		indicator: React.PropTypes.bool,
 		autoFocus: React.PropTypes.bool,
 		onClose: React.PropTypes.func,
-		onSiteSelect: React.PropTypes.func
+		onSiteSelect: React.PropTypes.func,
+		filter: React.PropTypes.func
 	},
 
 	getDefaultProps() {
@@ -83,6 +84,7 @@ export default React.createClass( {
 							onSiteSelect={ this.selectSite }
 							selected={ this.state.selected }
 							hideSelected={ true }
+							filter={ this.props.filter }
 						/>
 					}
 				</div>
