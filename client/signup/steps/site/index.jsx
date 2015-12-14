@@ -33,7 +33,7 @@ var siteUrlsSearched = [],
 	timesValidationFailed = 0;
 
 module.exports = React.createClass( {
-	displayName: 'SiteCreation',
+	displayName: 'Site',
 
 	getInitialState: function() {
 		return {
@@ -234,7 +234,7 @@ module.exports = React.createClass( {
 			<FormTextInput
 				autoFocus={ true }
 				autoCapitalize={ 'off' }
-				className='site-creation__site-url'
+				className='site-signup-step__site-url'
 				disabled={ fieldDisabled }
 				type='text'
 				name='site'
@@ -243,7 +243,7 @@ module.exports = React.createClass( {
 				isValid={ formState.isFieldValid( this.state.form, 'site' ) }
 				onBlur={ this.handleBlur }
 				onChange={ this.handleChangeEvent } />
-			<span className='site-creation__wordpress-domain-suffix'>.wordpress.com</span>
+			<span className='site-signup-step__wordpress-domain-suffix'>.wordpress.com</span>
 		</ValidationFieldset>;
 	},
 
