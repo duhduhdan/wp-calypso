@@ -17,10 +17,7 @@ export default React.createClass( {
 	propTypes: {
 		onClick: PropTypes.func.isRequired,
 		onTitleClick: PropTypes.func,
-		backText: PropTypes.oneOfType( [
-			PropTypes.element,
-			PropTypes.string
-		] )
+		backText: PropTypes.string
 	},
 
 	getDefaultProps() {

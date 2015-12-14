@@ -18,10 +18,7 @@ export default React.createClass( {
 	propTypes: {
 		onClick: PropTypes.func,
 		href: PropTypes.string,
-		text: PropTypes.oneOfType( [
-			PropTypes.element,
-			PropTypes.string
-		] )
+		text: PropTypes.string
 	},
 
 	getDefaultProps() {
