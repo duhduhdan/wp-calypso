@@ -15,7 +15,7 @@ import { abtest } from 'lib/abtest'
 
 export default React.createClass( {
 
-	displayName: 'EmailSignupForm',
+	displayName: 'User',
 
 	componentWillReceiveProps( nextProps ) {
 		if ( nextProps.step && 'invalid' === nextProps.step.status ) {
