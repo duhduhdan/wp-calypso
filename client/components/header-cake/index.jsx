@@ -1,25 +1,25 @@
 /**
  * External dependencies
  */
-import React from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 /**
  * Internal dependencies
  */
 import Card from 'components/card';
-import Gridicon from 'components/gridicon';
+import HeaderCakeBack from './back';
 
 export default React.createClass( {
 
 	displayName: 'HeaderCake',
 
 	propTypes: {
-		onClick: React.PropTypes.func.isRequired,
-		onTitleClick: React.PropTypes.func,
-		backText: React.PropTypes.oneOfType( [
-			React.PropTypes.element,
-			React.PropTypes.string
+		onClick: PropTypes.func.isRequired,
+		onTitleClick: PropTypes.func,
+		backText: PropTypes.oneOfType( [
+			PropTypes.element,
+			PropTypes.string
 		] )
 	},
 
@@ -30,6 +30,7 @@ export default React.createClass( {
 	},
 
 	render() {
+		const backText = this.props.backText || this.translate( 'Back' );
 		const classes = classNames(
 			'header-cake',
 			this.props.className,
@@ -40,12 +41,14 @@ export default React.createClass( {
 
 		return (
 			<Card className={ classes }>
-				<a className="header-cake__back" onClick={ this.props.onClick }>
-					<Gridicon icon="chevron-left" size={ 16 } />
-					<span className="header-cake__back-text">{ this.props.backText || this.translate( 'Back' ) }</span>
-				</a>
+				<div className="header-cake__corner">
+					<HeaderCakeBack text={ backText } onClick={ this.props.onClick } />
+				</div>
 				<div className="header-cake__title" onClick={ this.props.onTitleClick }>
 					{ this.props.children }
+				</div>
+				<div className="header-cake__corner is-spacer">
+					<HeaderCakeBack text={ backText } />
 				</div>
 			</Card>
 		);
