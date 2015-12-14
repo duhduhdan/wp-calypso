@@ -7,8 +7,7 @@ import page from 'page';
 /**
  * Internal dependencies
  */
-import Button from 'components/button';
-import CompactCard from 'components/card/compact';
+import PlanFeature from './feature'
 import SectionHeader from 'components/section-header';
 
 const PlanFeatures = React.createClass( {
@@ -40,61 +39,25 @@ const PlanFeatures = React.createClass( {
 			<div>
 				<SectionHeader label={ this.translate( "Your Site's Features" ) } />
 
-				<CompactCard className="plan-features__feature">
-					<div className="plan-features__feature-description">
-						<strong>{ this.translate( 'Custom site address' ) }</strong>
-						<em>{ this.translate( 'Give your site a custom site address.' ) }</em>
-					</div>
+				<PlanFeature
+					button={ { label: this.translate( 'Find a Domain' ), onClick: this.goToAddDomain } }
+					description={ this.translate( 'Give your site a custom site address.' ) }
+					heading={ this.translate( 'Custom site address' ) } />
 
-					<Button
-						className="plan-features__feature-button"
-						onClick={ this.goToAddDomain }
-						primary>
-						{ this.translate( 'Find a Domain' ) }
-					</Button>
-				</CompactCard>
+				<PlanFeature
+					button={ { label: this.translate( 'Customize' ), onClick: this.goToCustomizer } }
+					description={ this.translate( "Change your theme's fonts, colors, and CSS for a unique look." ) }
+					heading={ this.translate( 'Custom Design' ) } />
 
-				<CompactCard className="plan-features__feature">
-					<div className="plan-features__feature-description">
-						<strong>{ this.translate( 'Custom Design' ) }</strong>
-						<em>{ this.translate( "Change your theme's fonts, colors, and CSS for a unique look." ) }</em>
-					</div>
+				<PlanFeature
+					button={ { label: this.translate( 'Setup eCommerce' ), onClick: this.goToPlugins } }
+					description={ this.translate( 'Connect your Shopify, Ecwid, or Gumroad account to your WordPress.com site.' ) }
+					heading={ this.translate( 'eCommerce Integration' ) } />
 
-					<Button
-						className="plan-features__feature-button"
-						onClick={ this.goToCustomizer }
-						primary>
-						{ this.translate( 'Customize' ) }
-					</Button>
-				</CompactCard>
-
-				<CompactCard className="plan-features__feature">
-					<div className="plan-features__feature-description">
-						<strong>{ this.translate( 'eCommerce Integration' ) }</strong>
-						<em>{ this.translate( 'Connect your Shopify, Ecwid, or Gumroad account to your WordPress.com site.' ) }</em>
-					</div>
-
-					<Button
-						className="plan-features__feature-button"
-						onClick={ this.goToPlugins }
-						primary>
-						{ this.translate( 'Setup eCommerce' ) }
-					</Button>
-				</CompactCard>
-
-				<CompactCard className="plan-features__feature">
-					<div className="plan-features__feature-description">
-						<strong>{ this.translate( 'Google Analytics Integration' ) }</strong>
-						<em>{ this.translate( 'Connect your Google Analytics account.' ) }</em>
-					</div>
-
-					<Button
-						className="plan-features__feature-button"
-						onClick={ this.goToGoogleAnalytics }
-						primary>
-						{ this.translate( 'Setup Analytics' ) }
-					</Button>
-				</CompactCard>
+				<PlanFeature
+					button={ { label: this.translate( 'Setup Analytics' ), onClick: this.goToGoogleAnalytics } }
+					description={ this.translate( 'Connect your Google Analytics account.' ) }
+					heading={ this.translate( 'Google Analytics Integration' ) } />
 			</div>
 		);
 	}
