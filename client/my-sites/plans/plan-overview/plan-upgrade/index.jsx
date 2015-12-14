@@ -26,7 +26,7 @@ const PlanUpgrade = React.createClass( {
 
 		upgradesActions.addItem( cartItems.planItem( 'business-bundle', true ) );
 
-		page( '/checkout/' + this.props.selectedSite.slug );
+		page( `/checkout/${ this.props.selectedSite.slug }` );
 	},
 
 	render() {
