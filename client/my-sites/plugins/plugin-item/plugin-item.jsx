@@ -55,33 +55,33 @@ module.exports = React.createClass( {
 		switch ( log && log.action ) {
 
 			case 'UPDATE_PLUGIN':
-				message = ( this.props.selectedSite ?
-					i18n.translate( 'updating', { context: 'plugin' } ) :
-					i18n.translate( 'updating on %(count)s site', 'updating on %(count)s sites', translationArgs ) );
+				message = ( this.props.selectedSite
+					? i18n.translate( 'updating', { context: 'plugin' } )
+					: i18n.translate( 'updating on %(count)s site', 'updating on %(count)s sites', translationArgs ) );
 				break;
 
 			case 'ACTIVATE_PLUGIN':
-				message = ( this.props.selectedSite ?
-					i18n.translate( 'activating', { context: 'plugin' } ) :
-					i18n.translate( 'activating on %(count)s site', 'activating on %(count)s sites', translationArgs ) );
+				message = ( this.props.selectedSite
+					? i18n.translate( 'activating', { context: 'plugin' } )
+					: i18n.translate( 'activating on %(count)s site', 'activating on %(count)s sites', translationArgs ) );
 				break;
 
 			case 'DEACTIVATE_PLUGIN':
-				message = ( this.props.selectedSite ?
-					i18n.translate( 'deactivating', { context: 'plugin' } ) :
-					i18n.translate( 'deactivating on %(count)s site', 'deactivating on %(count)s sites', translationArgs ) );
+				message = ( this.props.selectedSite
+					? i18n.translate( 'deactivating', { context: 'plugin' } )
+					: i18n.translate( 'deactivating on %(count)s site', 'deactivating on %(count)s sites', translationArgs ) );
 				break;
 
 			case 'ENABLE_AUTOUPDATE_PLUGIN':
-				message = ( this.props.selectedSite ?
-					i18n.translate( 'enabling autoupdates' ) :
-					i18n.translate( 'enabling autoupdates on %(count)s site', 'enabling autoupdates on %(count)s sites', translationArgs ) );
+				message = ( this.props.selectedSite
+					? i18n.translate( 'enabling autoupdates' )
+					: i18n.translate( 'enabling autoupdates on %(count)s site', 'enabling autoupdates on %(count)s sites', translationArgs ) );
 				break;
 
 			case 'DISABLE_AUTOUPDATE_PLUGIN':
-				message = ( this.props.selectedSite ?
-					i18n.translate( 'disabling autoupdates' ) :
-					i18n.translate( 'disabling autoupdates on %(count)s site', 'disabling autoupdates on %(count)s sites', translationArgs ) );
+				message = ( this.props.selectedSite
+					? i18n.translate( 'disabling autoupdates' )
+					: i18n.translate( 'disabling autoupdates on %(count)s site', 'disabling autoupdates on %(count)s sites', translationArgs ) );
 				break;
 		}
 		return message;
@@ -142,6 +142,13 @@ module.exports = React.createClass( {
 		return null;
 	},
 
+	onItemClick: function( event ) {
+		if ( this.props.isSelectable ) {
+			event.preventDefault();
+			this.props.onClick( this );
+		}
+	},
+
 	render: function() {
 		var pluginTitle,
 			plugin = this.props.plugin,
@@ -191,32 +198,6 @@ module.exports = React.createClass( {
 				);
 				errorCounter++;
 			}, this );
-			return (
-				<div>
-					<CompactCard className={ pluginItemClasses }>
-						<input
-							className="plugin-item__checkbox"
-							id={ plugin.slug }
-							type="checkbox"
-							onClick={ this.props.onClick }
-							checked={ this.props.isSelected }
-							readOnly={ true }
-						/>
-						<label className="plugin-item__label" htmlFor={ plugin.slug }>
-							<span className="screen-reader-text">
-								{ this.translate( 'Toggle selection of %(plugin)s', { args: { plugin: plugin.name } } ) }
-							</span>
-						</label>
-						<div className="plugin-item__info">
-							{ pluginTitle }
-							{ this.pluginMeta( plugin ) }
-						</div>
-					</CompactCard>
-					<div>
-					{ errorNotices }
-					</div>
-				</div>
-			);
 		}
 		if ( this.props.hasAllNoManageSites ) {
 			return (
@@ -237,14 +218,26 @@ module.exports = React.createClass( {
 			);
 		}
 		return (
-			<CompactCard className="plugin-item">
-				<a href={ this.props.pluginLink } className="plugin-item__link">
-					<PluginIcon image={ plugin.icon }/>
-					{ pluginTitle }
-					{ this.pluginMeta( plugin ) }
-				</a>
-				{ this.renderActions() }
-			</CompactCard>
+			<div>
+				<CompactCard className="plugin-item">
+					{ ! this.props.isSelectable
+						? null
+						: <input className="plugin-item__checkbox"
+								id={ plugin.slug }
+								type="checkbox"
+								onClick={ this.props.onClick }
+								checked={ this.props.isSelected }
+								readOnly={ true } />
+					}
+					<a href={ this.props.pluginLink } onClick={ this.onItemClick } className="plugin-item__link">
+						<PluginIcon image={ plugin.icon }/>
+						{ pluginTitle }
+						{ this.pluginMeta( plugin ) }
+					</a>
+					{ this.renderActions() }
+				</CompactCard>
+				{ errorNotices }
+			</div>
 		);
 	}
 
