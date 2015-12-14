@@ -10,7 +10,7 @@ import { filter } from 'lodash';
 import {
 	NEW_NOTICE,
 	REMOVE_NOTICE
-} from './action-types';
+} from 'state/action-types';
 
 /**
  * Tracks all known site objects, indexed by site ID.

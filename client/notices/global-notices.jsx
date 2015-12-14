@@ -5,7 +5,7 @@ import React from 'react';
 import classNames from 'classnames';
 import debugModule from 'debug';
 import { connect } from 'react-redux';
-import { noticesMapDispatchToProps } from 'state/notices/actions'
+import { noticesMapDispatchToProps } from 'state/ui/notices/actions'
 
 /**
  * Internal Dependencies
@@ -80,7 +80,7 @@ const GlobalNotices = React.createClass( {
 export default connect(
 	( state ) => {
 		return {
-			notices: state.notices.items
+			notices: state.ui.notices.items
 		};
 	},
 	noticesMapDispatchToProps

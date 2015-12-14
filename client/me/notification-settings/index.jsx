@@ -7,7 +7,7 @@ import React from 'react';
  * Internal dependencies
  */
 import observe from 'lib/mixins/data-observe';
-import { noticesMapDispatchToProps } from 'state/notices/actions'
+import { noticesMapDispatchToProps } from 'state/ui/notices/actions'
 import Main from 'components/main';
 import ReauthRequired from 'me/reauth-required';
 import twoStepAuthorization from 'lib/two-step-authorization';

@@ -12,7 +12,7 @@ import Notice from 'components/notice';
 import NoticeAction from 'components/notice/notice-action';
 import notices from 'notices';
 import observe from 'lib/mixins/data-observe';
-import DeleteSiteNotices from './delete-site-notices';
+import DeleteSiteNotices from 'notices/delete-site-notices';
 
 const debug = debugModule( 'calypso:notices' );
 

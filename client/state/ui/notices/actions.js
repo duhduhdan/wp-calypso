@@ -4,7 +4,7 @@
 import {
 	NEW_NOTICE,
 	REMOVE_NOTICE
-} from './action-types';
+} from 'state/action-types';
 
 import { uniqueId } from 'lodash';
 
