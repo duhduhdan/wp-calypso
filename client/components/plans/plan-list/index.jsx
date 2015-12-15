@@ -31,7 +31,7 @@ module.exports = React.createClass( {
 			plansList,
 			currentPlan;
 
-		if ( ! this.props.sitePlans.hasLoadedFromServer ) {
+		if ( plans.length === 0 || ( ! this.props.isInSignup && ! this.props.sitePlans.hasLoadedFromServer ) ) {
 			plansList = times( 3, function( n ) {
 				return (
 					<Plan placeholder={ true }
@@ -50,22 +50,23 @@ module.exports = React.createClass( {
 			showJetpackPlans = site && site.jetpack;
 		}
 
-		// check if this site was registered via the JPPHP "Jetpack Start" program
-		// if so, we want to display a message that this plan is managed via the hosting partner
-
-		currentPlan = find( this.props.sitePlans.data, { currentPlan: true } );
-		if ( isJpphpBundle( currentPlan ) ) {
-			return (
-				<Card>
-					<p>
-						{
-							this.translate( 'This plan is managed by your web host. ' +
-								'Please log into your host\'s control panel to manage subscription ' +
-								'and billing information.' )
-						}
-					</p>
-				</Card>
-			);
+		if ( ! this.props.isInSignup ) {
+			// check if this site was registered via the JPPHP "Jetpack Start" program
+			// if so, we want to display a message that this plan is managed via the hosting partner
+			currentPlan = find( this.props.sitePlans.data, { currentPlan: true } );
+			if ( isJpphpBundle( currentPlan ) ) {
+				return (
+					<Card>
+						<p>
+							{
+								this.translate( 'This plan is managed by your web host. ' +
+									'Please log into your host\'s control panel to manage subscription ' +
+									'and billing information.' )
+							}
+						</p>
+					</Card>
+				);
+			}
 		}
 
 		if ( plans.length > 0 ) {
