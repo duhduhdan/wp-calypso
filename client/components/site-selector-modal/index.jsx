@@ -2,7 +2,8 @@
  * External dependencies
  */
 var React = require( 'react/addons' ),
-	classnames = require( 'classnames' );
+	classnames = require( 'classnames' ),
+	includes = require( 'lodash/collection/includes' );
 
 /**
  * Internal dependencies
@@ -34,12 +35,19 @@ var SiteSelectorModal = React.createClass( {
 		className: React.PropTypes.string
 	},
 
-	getInitialState: function() {
-		return ( {
-			site: sitesList.getPrimary().jetpack
-				? sitesList.get().filter( this.props.filter )[0]
-				: sitesList.getPrimary()
-		} );
+	getInitialState() {
+		const primarySite = sitesList.getPrimary();
+		let filteredSites = sitesList.get();
+
+		if ( this.props.filter ) {
+			filteredSites = filteredSites.filter( this.props.filter );
+		}
+
+		return {
+			site: includes( filteredSites, primarySite )
+				? primarySite
+				: filteredSites[0]
+		};
 	},
 
 	setSite: function( slug ) {
