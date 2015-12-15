@@ -7,6 +7,11 @@
 
 	.is-bulk-editing & {
 		padding-left: 24px;
+
+		.plugin-item__actions {
+			opacity: 0.3;
+			filter: grayscale(70%);
+		}
 	}
 
 	input {
