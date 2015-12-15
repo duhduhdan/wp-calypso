@@ -8,7 +8,7 @@ var React = require( 'react/addons' ),
  * Internal dependencies
  */
 var Dialog = require( 'components/dialog' ),
-	SelectSite = require( 'me/select-site' ),
+	SitesDropdown = require( 'components/sites-dropdown' ),
 	sitesList = require( 'lib/sites-list' )();
 
 /**
