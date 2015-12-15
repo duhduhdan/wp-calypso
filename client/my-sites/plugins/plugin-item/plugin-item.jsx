@@ -160,6 +160,22 @@ module.exports = React.createClass( {
 				disabled: this.props.hasAllNoManageSites,
 				'is-placeholder': ! plugin
 			} );
+
+		errors.forEach( function( error ) {
+			errorNotices.push(
+				<Notice
+					type='message'
+					status='is-error'
+					text={ PluginNotices.getMessage( [ error ], PluginNotices.errorMessage.bind( PluginNotices ) ) }
+					button={ PluginNotices.getErrorButton( error ) }
+					href={ PluginNotices.getErrorHref( error ) }
+					raw={ { onRemoveCallback: PluginsActions.removePluginsNotices.bind( this, [ error ] ) } }
+					inline={ true }
+					key={ 'notice-' + errorCounter } />
+			);
+			errorCounter++;
+		}, this );
+
 		if ( ! plugin ) {
 			return (
 				<CompactCard className={ pluginItemClasses }>
@@ -180,25 +196,8 @@ module.exports = React.createClass( {
 			<div className="plugin-item__title" data-warnings={ numberOfWarningIcons }>
 				{ plugin.name }
 			</div>
-			);
+		);
 
-		if ( this.props.isSelectable ) {
-			errors.forEach( function( error ) {
-				errorNotices.push(
-					<Notice
-						type='message'
-						status='is-error'
-						text={ PluginNotices.getMessage( [ error ], PluginNotices.errorMessage.bind( PluginNotices ) ) }
-						isCompact={ true }
-						button={ PluginNotices.getErrorButton( error ) }
-						href={ PluginNotices.getErrorHref( error ) }
-						raw={ { onRemoveCallback: PluginsActions.removePluginsNotices.bind( this, [ error ] ) } }
-						inline={ true }
-						key={ 'notice-' + errorCounter } />
-				);
-				errorCounter++;
-			}, this );
-		}
 		if ( this.props.hasAllNoManageSites ) {
 			return (
 				<div className="plugin-item__wrapper">
