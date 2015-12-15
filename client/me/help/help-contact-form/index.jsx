@@ -2,6 +2,7 @@
  * External dependencies
  */
 import React from 'react';
+import isEqual from 'lodash/lang/isEqual';
 
 /**
  * Internal dependencies
@@ -31,7 +32,11 @@ module.exports = React.createClass( {
 		showSiteField: React.PropTypes.bool,
 		siteFilter: React.PropTypes.func,
 		siteList: React.PropTypes.object,
-		disabled: React.PropTypes.bool
+		disabled: React.PropTypes.bool,
+		valueLink: React.PropTypes.shape( {
+			value: React.PropTypes.any,
+			requestChange: React.PropTypes.func.isRequired
+		} ),
 	},
 
 	getDefaultProps: function() {
@@ -41,7 +46,11 @@ module.exports = React.createClass( {
 			showHowYouFeelField: false,
 			showSubjectField: false,
 			showSiteField: false,
-			disabled: false
+			disabled: false,
+			valueLink: {
+				value: null,
+				requestChange: () => {}
+			}
 		}
 	},
 
@@ -50,15 +59,27 @@ module.exports = React.createClass( {
 	 * @return {Object} An object representing our initial state
 	 */
 	getInitialState: function() {
-		const { showSiteField, siteList } = this.props;
+		const { showSiteField, siteList, valueLink } = this.props;
 
-		return {
+		return valueLink.value || {
 			howCanWeHelp: 'gettingStarted',
 			howYouFeel: 'unspecified',
 			message: '',
 			subject: '',
 			site: showSiteField ? siteList.getLastSelectedSite() || siteList.getPrimary() : null
 		};
+	},
+
+	componentWillReceiveProps: function( nextProps ) {
+		if ( isEqual( nextProps.valueLink.value, this.state ) ) {
+			return;
+		}
+
+		this.setState( nextProps.valueLink.value );
+	},
+
+	componentDidUpdate: function() {
+		this.props.valueLink.requestChange( this.state );
 	},
 
 	setSite: function( event ) {

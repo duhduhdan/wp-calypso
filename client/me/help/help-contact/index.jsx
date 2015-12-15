@@ -30,6 +30,7 @@ const noticeOptions = {
 };
 const wpcom = wpcomLib.undocumented();
 const sites = siteList();
+let savedContactForm = null;
 
 module.exports = React.createClass( {
 	displayName: 'HelpContact',
@@ -85,6 +86,10 @@ module.exports = React.createClass( {
 		page( '/help' );
 	},
 
+	clearSavedContactForm: function() {
+		savedContactForm = null;
+	},
+
 	startChat: function( contactForm ) {
 		const { message, howCanWeHelp, howYouFeel, site } = contactForm;
 
@@ -100,6 +105,8 @@ module.exports = React.createClass( {
 		analytics.tracks.recordEvent( 'calypso_help_live_chat_begin' );
 
 		this.sendMessageToOperator( message );
+
+		this.clearSavedContactForm();
 	},
 
 	submitKayakoTicket: function( contactForm ) {
@@ -137,6 +144,8 @@ module.exports = React.createClass( {
 			analytics.tracks.recordEvent( 'calypso_help_contact_submit', { ticket_type: 'kayako' } );
 
 		} );
+
+		this.clearSavedContactForm();
 	},
 
 	submitSupportForumsTopic: function( contactForm ) {
@@ -171,6 +180,8 @@ module.exports = React.createClass( {
 
 			analytics.tracks.recordEvent( 'calypso_help_contact_submit', { ticket_type: 'forum' } );
 		} );
+
+		this.clearSavedContactForm();
 	},
 
 	/**
@@ -222,6 +233,24 @@ module.exports = React.createClass( {
 			} );
 		}
 		this.showOperatorAvailabilityNotice( false );
+
+		//Autofill the subject field since we will be showing it now that operators have went away.
+		this.autofillSubject();
+	},
+
+	/**
+	 * Auto fill the subject with the first five words contained in the message field of the contact form.
+	 */
+	autofillSubject: function() {
+		if ( ! savedContactForm.message || savedContactForm.subject ) {
+			return;
+		}
+
+		const words = savedContactForm.message.split( /\s+/ );
+
+		savedContactForm = Object.assign( savedContactForm, { subject: words.slice( 0, 5 ).join( ' ' ) + '…' } );
+
+		this.forceUpdate();
 	},
 
 	showOperatorAvailabilityNotice: function( isAvailable ) {
@@ -275,7 +304,8 @@ module.exports = React.createClass( {
 				showHowYouFeelField: showKayakoVariation || showChatVariation,
 				showSiteField: ( showKayakoVariation || showChatVariation ) && ( sites.get().length > 1 ),
 				siteList: sites,
-				siteFilter: site => ( site.visible && ! site.jetpack )
+				siteFilter: site => ( site.visible && ! site.jetpack ),
+				valueLink: { value: savedContactForm, requestChange: ( contactForm ) => savedContactForm = contactForm }
 			},
 			showChatVariation && {
 				onSubmit: this.startChat,
