@@ -45,7 +45,6 @@ export default React.createClass( {
 
 	getInitialState() {
 		return {
-			search: '',
 			selected: this.props.selected || sites.getPrimary().slug
 		};
 	},
