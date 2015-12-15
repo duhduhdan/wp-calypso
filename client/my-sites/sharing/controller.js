@@ -20,14 +20,9 @@ var sites = require( 'lib/sites-list' )(),
 module.exports = {
 	layout: function( context ) {
 		var Sharing = require( 'my-sites/sharing/main' ),
-			site = sites.getSelectedSite(),
 			siteUrl = route.getSiteFragment( context.path );
 
 		titleActions.setTitle( i18n.translate( 'Sharing', { textOnly: true } ), { siteID: siteUrl } );
-
-		if ( site && ! site.settings ) {
-			site.fetchSettings();
-		}
 
 		ReactDom.render(
 			React.createElement( Sharing, {
@@ -81,6 +76,10 @@ module.exports = {
 			site = sites.getSelectedSite(),
 			basePath = route.sectionify( context.path ),
 			baseAnalyticsPath;
+
+		if ( site && ! site.settings ) {
+			site.fetchSettings();
+		}
 
 		if ( site ) {
 			baseAnalyticsPath = basePath + '/:site';
