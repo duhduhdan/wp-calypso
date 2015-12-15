@@ -9,13 +9,17 @@ import {
 import { uniqueId } from 'lodash';
 
 export function createNoticeAction( status, text, options = {} ) {
-	return {
+	const notice = {
 		noticeId: uniqueId(),
 		duration: options.duration,
 		showDismiss: ( typeof options.showDismiss === 'boolean' ? options.showDismiss : true ),
-		type: NEW_NOTICE,
 		status: status,
 		text: text
+	};
+
+	return {
+		type: NEW_NOTICE,
+		notice
 	};
 }
 

@@ -2,29 +2,24 @@
  * External dependencies
  */
 var React = require( 'react' ),
-	classNames = require( 'classnames' );
+	classNames = require( 'classnames' ),
+	connect = require( 'react-redux' ).connect;
 
 /**
  * Internal dependencies
  */
 var Masterbar = require( './masterbar' ),
 	GlobalNotices = require( 'components/global-notices' ),
-	notices = require( 'notices' );
+	notices = require( 'notices' ),
+	LoggedOutLayout;
 
-module.exports = React.createClass( {
+LoggedOutLayout = React.createClass( {
 	displayName: 'LayoutLoggedOut',
 
-	getInitialState: function() {
-		return {
-			section: undefined,
-			noSidebar: false
-		};
-	},
-
 	render: function() {
-		var sectionClass = this.state.section ? ' is-section-' + this.state.section : '',
+		var sectionClass = this.props.section ? ' is-section-' + this.props.section : '',
 			classes = classNames( 'wp', sectionClass, {
-				'has-no-sidebar': this.state.noSidebar
+				'has-no-sidebar': this.props.noSidebar
 			} );
 
 		return (
@@ -41,3 +36,13 @@ module.exports = React.createClass( {
 	}
 
 } );
+
+export default connect(
+	( state ) => {
+		return {
+			isLoading: state.ui.isLoading,
+			section: state.ui.section,
+			noSidebar: state.ui.noSidebar
+		};
+	}
+)( LoggedOutLayout );

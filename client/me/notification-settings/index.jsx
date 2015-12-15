@@ -76,8 +76,6 @@ const NotificationSettings = React.createClass( {
 } );
 
 export default connect(
-	() => {
-		return {}
-	},
+	null,
 	noticesMapDispatchToProps
 )( NotificationSettings );

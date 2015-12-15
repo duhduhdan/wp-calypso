@@ -6,7 +6,7 @@ import { combineReducers } from 'redux';
 /**
  * Internal dependencies
  */
-import { SET_SELECTED_SITE } from 'state/action-types';
+import { SET_SELECTED_SITE, SET_SECTION } from 'state/action-types';
 import notices from './notices/reducer';
 
 /**
@@ -26,7 +26,31 @@ export function selectedSite( state = null, action ) {
 	return state;
 }
 
+export function section( state = false, action ) {
+	if ( action.type === SET_SECTION && action.section !== undefined ) {
+		state = action.section;
+	}
+	return state;
+}
+
+export function noSidebar( state = false, action ) {
+	if ( action.type === SET_SECTION && action.noSidebar !== undefined ) {
+		state = action.noSidebar;
+	}
+	return state;
+}
+
+export function isLoading( state = false, action ) {
+	if ( action.type === SET_SECTION && action.isLoading !== undefined ) {
+		state = action.isLoading;
+	}
+	return state;
+}
+
 export default combineReducers( {
+	section,
+	isLoading,
+	noSidebar,
 	selectedSite,
 	notices
 } );
