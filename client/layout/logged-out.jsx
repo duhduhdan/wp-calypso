@@ -19,7 +19,7 @@ LoggedOutLayout = React.createClass( {
 	render: function() {
 		var sectionClass = this.props.section ? ' is-section-' + this.props.section : '',
 			classes = classNames( 'wp', sectionClass, {
-				'has-no-sidebar': this.props.noSidebar
+				'has-no-sidebar': !this.props.hasSidebar
 			} );
 
 		return (
@@ -42,7 +42,7 @@ export default connect(
 		return {
 			isLoading: state.ui.isLoading,
 			section: state.ui.section,
-			noSidebar: state.ui.noSidebar
+			hasSidebar: state.ui.hasSidebar
 		};
 	}
 )( LoggedOutLayout );

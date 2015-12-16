@@ -302,7 +302,7 @@ export default {
 
 		if ( isWelcome ) {
 			ReactDom.unmountComponentAtNode( document.getElementById( 'secondary' ) );
-			context.store.dispatch( setSection( null, { noSidebar: true } ) );
+			context.store.dispatch( setSection( null, { hasSidebar: false } ) );
 		}
 
 		analytics.tracks.recordEvent( 'calypso_me_next_view', { is_welcome: isWelcome } );

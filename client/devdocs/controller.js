@@ -116,7 +116,7 @@ var devdocs = {
 
 	pleaseLogIn: function( context ) {
 		context.store.dispatch( setSection( 'devdocs-start', {
-			noSidebar: true
+			hasSidebar: false
 		} ) );
 
 		ReactDom.unmountComponentAtNode( document.getElementById( 'secondary' ) );

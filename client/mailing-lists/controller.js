@@ -15,7 +15,7 @@ export default {
 	unsubscribe( context ) {
 		// We don't need the sidebar here.
 		context.store.dispatch( setSection( 'me', {
-			noSidebar: true
+			hasSidebar: false
 		} ) );
 
 		ReactDom.render(

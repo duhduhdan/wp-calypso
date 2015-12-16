@@ -89,7 +89,7 @@ Layout = React.createClass( {
 				'is-active': this.props.isLoading
 			} );
 
-		if ( this.props.noSidebar ) {
+		if ( ! this.props.hasSidebar ) {
 			sectionClass += ' has-no-sidebar';
 		}
 
@@ -123,7 +123,7 @@ export default connect(
 		return {
 			isLoading: state.ui.isLoading,
 			section: state.ui.section,
-			noSidebar: state.ui.noSidebar
+			hasSidebar: state.ui.hasSidebar
 		};
 	}
 )( Layout );

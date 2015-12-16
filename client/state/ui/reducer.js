@@ -33,9 +33,9 @@ export function section( state = false, action ) {
 	return state;
 }
 
-export function noSidebar( state = false, action ) {
-	if ( action.type === SET_SECTION && action.noSidebar !== undefined ) {
-		state = action.noSidebar;
+export function hasSidebar( state = true, action ) {
+	if ( action.type === SET_SECTION && action.hasSidebar !== undefined ) {
+		state = action.hasSidebar;
 	}
 	return state;
 }
@@ -50,7 +50,7 @@ export function isLoading( state = false, action ) {
 export default combineReducers( {
 	section,
 	isLoading,
-	noSidebar,
+	hasSidebar,
 	selectedSite,
 	notices
 } );

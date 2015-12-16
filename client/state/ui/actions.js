@@ -22,6 +22,6 @@ export function setSection( section, options = {} ) {
 	if ( section ) {
 		options.section = section;
 	}
-	options.noSidebar = options.noSidebar || false;
+	options.hasSidebar = ( options.hasSidebar === false ) ? false : true;
 	return options;
 }

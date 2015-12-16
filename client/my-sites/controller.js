@@ -262,7 +262,7 @@ module.exports = {
 		 * so section needs to be set explicitly and #secondary cleaned up
 		 */
 		context.store.dispatch( uiActions.setSection( 'sites', {
-			noSidebar: true
+			hasSidebar: false
 		} ) );
 		ReactDom.unmountComponentAtNode( document.getElementById( 'secondary' ) );
 		layoutFocus.set( 'content' );

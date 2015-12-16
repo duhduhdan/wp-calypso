@@ -89,7 +89,7 @@ export default {
 		titleActions.setTitle( i18n.translate( 'Create an account' ) );
 
 		context.store.dispatch( setSection( 'signup', {
-			noSidebar: true
+			hasSidebar: false
 		} ) );
 
 		ReactDom.render(
