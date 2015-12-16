@@ -135,8 +135,8 @@ module.exports = React.createClass( {
 	renderActions: function() {
 		if ( this.props.selectedSite ) {
 			return <div className="plugin-item__actions">
-				<PluginActivateToggle isMock={ this.props.isMock || this.props.isSelectable } plugin={ this.props.plugin } site={ this.props.selectedSite } notices={ this.props.notices } />
-				<PluginAutoupdateToggle isMock={ this.props.isMock || this.props.isSelectable } plugin={ this.props.plugin } site={ this.props.selectedSite } notices={ this.props.notices } wporg={ !! this.props.plugin.wporg } />
+				<PluginActivateToggle isMock={ this.props.isMock } disabled={ this.props.isSelectable } plugin={ this.props.plugin } site={ this.props.selectedSite } notices={ this.props.notices } />
+				<PluginAutoupdateToggle isMock={ this.props.isMock } disabled={ this.props.isSelectable } plugin={ this.props.plugin } site={ this.props.selectedSite } notices={ this.props.notices } wporg={ !! this.props.plugin.wporg } />
 			</div>;
 		}
 		return null;
