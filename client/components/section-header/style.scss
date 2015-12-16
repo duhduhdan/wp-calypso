@@ -43,6 +43,10 @@
 	float: left;
 	margin-right: 8px;
 
+	&:first-child {
+		margin-left: 2px;
+	}
+
 	&:last-child {
 		margin-right: 0;
 	}
