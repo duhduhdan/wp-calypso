@@ -35,7 +35,7 @@ var SiteSelectorModal = React.createClass( {
 		className: React.PropTypes.string
 	},
 
-	getInitialState() {
+	getInitialState: function() {
 		const primarySite = sitesList.getPrimary();
 		let filteredSites = sitesList.get();
 
