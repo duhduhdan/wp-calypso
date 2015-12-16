@@ -257,7 +257,6 @@ module.exports = React.createClass( {
 
 		return (
 			<fieldset>
-				<legend>{ this.translate( 'Related Posts' ) }</legend>
 				<ul id="settings-reading-relatedposts">
 					<li>
 						<label>
@@ -324,7 +323,7 @@ module.exports = React.createClass( {
 						</li>
 					</ul>
 				</form>
-			</Card>	
+			</Card>
 		);
 	},
 
