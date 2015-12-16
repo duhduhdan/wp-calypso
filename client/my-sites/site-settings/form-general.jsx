@@ -19,7 +19,8 @@ var Card = require( 'components/card' ),
 	analytics = require( 'analytics' ),
 	dirtyLinkedState = require( 'lib/mixins/dirty-linked-state' ),
 	Button = require( 'components/button' ),
-	Gridicon = require( 'components/gridicon' );
+	Gridicon = require( 'components/gridicon' ),
+	FormInput = require( 'components/forms/form-text-input' );
 
 module.exports = React.createClass( {
 
@@ -87,7 +88,7 @@ module.exports = React.createClass( {
 			<div>
 				<fieldset>
 					<label htmlFor="blogname">{ this.translate( 'Site Title' ) }</label>
-					<input
+					<FormInput
 						name="blogname"
 						id="blogname"
 						type="text"
@@ -99,7 +100,7 @@ module.exports = React.createClass( {
 				</fieldset>
 				<fieldset>
 					<label htmlFor="blogdescription">{ this.translate( 'Site Tagline' ) }</label>
-					<input
+					<FormInput
 						name="blogdescription"
 						type="text"
 						id="blogdescription"
@@ -128,6 +129,7 @@ module.exports = React.createClass( {
 				<Button
 					href={ '/domains/add/' + site.slug }
 					onClick={ this.trackUpgradeClick }
+					className="is-magic"
 				>
 					<Gridicon icon="plus" /> { this.translate( 'Add a Custom Address', { context: 'Site address, domain' } ) }
 				</Button>
@@ -389,6 +391,7 @@ module.exports = React.createClass( {
 						compact={ true }
 						onClick={ this.submitForm }
 						primary={ true }
+						className="is-magic"
 						type="submit"
 						disabled={ this.state.fetchingSettings || this.state.submittingForm }>
 							{ this.state.submittingForm
@@ -410,6 +413,7 @@ module.exports = React.createClass( {
 						compact={ true }
 						onClick={ this.submitForm }
 						primary={ true }
+						className="is-magic"
 						type="submit"
 						disabled={ this.state.fetchingSettings || this.state.submittingForm }>
 							{ this.state.submittingForm
@@ -430,16 +434,17 @@ module.exports = React.createClass( {
 							{ this.jetpackDisconnectOption() }
 							{ config.isEnabled( 'manage/option_sync_non_public_post_stati' )
 							  ? <Button
-  								compact={ true }
-  								onClick={ this.submitForm }
-  								primary={ true }
-  								type="submit"
-  								disabled={ this.state.fetchingSettings || this.state.submittingForm }>
-  									{ this.state.submittingForm
-  										? this.translate( 'Saving…' )
-  										: this.translate( 'Save Settings' )
-  									}
-  								</Button>
+							  	compact={ true }
+								onClick={ this.submitForm }
+								primary={ true }
+								type="submit"
+								className="is-magic"
+								disabled={ this.state.fetchingSettings || this.state.submittingForm }>
+									{ this.state.submittingForm
+										? this.translate( 'Saving…' )
+										: this.translate( 'Save Settings' )
+									}
+								</Button>
 						 	 : null
 						 	}
 						</SectionHeader>
@@ -459,6 +464,7 @@ module.exports = React.createClass( {
 						compact={ true }
 						onClick={ this.submitForm }
 						primary={ true }
+						className="is-magic"
 						type="submit"
 						disabled={ this.state.fetchingSettings || this.state.submittingForm }>
 							{ this.state.submittingForm

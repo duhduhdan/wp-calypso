@@ -223,3 +223,11 @@
 	border: 1px lighten( $gray, 30% ) solid;
 	border-width: 1px 0;
 }
+
+.section-header button.is-magic {
+	display: none;
+
+	&.is-shown{
+		display: block;
+	}
+}
