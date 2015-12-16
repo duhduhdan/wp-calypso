@@ -265,9 +265,7 @@ module.exports = React.createClass( {
 		if ( ! ( olark.isOlarkReady && sitesInitialized ) ) {
 			return (
 				<div className="help-contact__placeholder">
-					<FormLabel className="help-contact__label">{ this.translate( 'What are you trying to do?' ) }</FormLabel>
-					<FormTextarea className="help-contact__textarea"/>
-					<FormButton type="button" disabled={true} className="help-contact__button">{ this.translate( 'Contact us' ) }</FormButton>
+					<HelpContactForm disabled={true} showSubjectField={ false } buttonLabel={ this.translate( 'Contact us' ) }/>
 				</div>
 			);
 		}

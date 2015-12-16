@@ -1,13 +1,10 @@
 .help-contact__placeholder {
 	height: 237px;
 	width: 100%;
-	.help-contact__textarea {
+	.form-textarea {
 		@include placeholder();
 	}
-	.help-contact__button {
-		@include placeholder();
-	}
-	.help-contact__label {
+	.form-label {
 		@include placeholder();
 	}
 }
