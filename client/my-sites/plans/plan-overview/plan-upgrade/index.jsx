@@ -38,9 +38,8 @@ const PlanUpgrade = React.createClass( {
 					} ) }
 				</CompactCard>
 			);
-		} else {
-			return null;
 		}
+		return null;
 	}
 } );
 
