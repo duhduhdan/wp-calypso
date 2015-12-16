@@ -90,6 +90,7 @@ var SiteSelectorModal = React.createClass( {
 				</div>
 				<SitesDropdown
 					onSiteSelect={ this.setSite }
+					selected={ this.state.site.slug }
 					filter={ this.props.filter } />
 			</Dialog>
 		);
