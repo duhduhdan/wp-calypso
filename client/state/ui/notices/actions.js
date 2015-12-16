@@ -8,46 +8,36 @@ import {
 
 import { uniqueId } from 'lodash';
 
-export function createNoticeAction( status, text, options = {} ) {
-	const notice = {
-		noticeId: uniqueId(),
-		duration: options.duration,
-		showDismiss: ( typeof options.showDismiss === 'boolean' ? options.showDismiss : true ),
-		status: status,
-		text: text
-	};
-
-	return {
-		type: NEW_NOTICE,
-		notice
-	};
-}
-
-export function removeNoticeAction( noticeId ) {
+export function removeNotice( noticeId ) {
 	return {
 		noticeId: noticeId,
 		type: REMOVE_NOTICE
 	};
 }
 
-export function noticesMapDispatchToProps( dispatch ) {
-	function createNotice( type, text, options ) {
-		var action = createNoticeAction( type, text, options );
+function createNotice( status, text, options = {} ) {
+	return ( dispatch ) => {
+		const notice = {
+			noticeId: uniqueId(),
+			duration: options.duration,
+			showDismiss: ( typeof options.showDismiss === 'boolean' ? options.showDismiss : true ),
+			status: status,
+			text: text
+		};
 
-		if ( action.duration > 0 ) {
+		if ( notice.duration > 0 ) {
 			setTimeout( () => {
-				dispatch( removeNoticeAction( action.noticeId ) );
-			}, action.duration );
+				dispatch( removeNotice( notice.noticeId ) );
+			}, notice.duration );
 		}
 
-		dispatch( action );
+		dispatch( {
+			type: NEW_NOTICE,
+			notice: notice
+		} );
 	}
-
-	return {
-		successNotice: createNotice.bind( null, 'is-success' ),
-		errorNotice: createNotice.bind( null, 'is-error' ),
-		removeNotice: ( noticeId ) => {
-			dispatch( removeNoticeAction( noticeId ) );
-		}
-	};
 }
+
+export const successNotice = createNotice.bind( null, 'is-success' );
+export const errorNotice = createNotice.bind( null, 'is-error' );
+

@@ -7,7 +7,7 @@ import React from 'react';
  * Internal dependencies
  */
 import observe from 'lib/mixins/data-observe';
-import { noticesMapDispatchToProps } from 'state/ui/notices/actions'
+import { successNotice } from 'state/ui/notices/actions'
 import Main from 'components/main';
 import ReauthRequired from 'me/reauth-required';
 import twoStepAuthorization from 'lib/two-step-authorization';
@@ -17,6 +17,7 @@ import BlogsSettings from './blogs-settings';
 import store from 'lib/notification-settings-store';
 import { fetchSettings, toggle, saveSettings } from 'lib/notification-settings-store/actions';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 const NotificationSettings = React.createClass( {
 	displayName: 'NotificationSettings',
@@ -77,5 +78,5 @@ const NotificationSettings = React.createClass( {
 
 export default connect(
 	null,
-	noticesMapDispatchToProps
+	dispatch => bindActionCreators( { successNotice }, dispatch )
 )( NotificationSettings );
