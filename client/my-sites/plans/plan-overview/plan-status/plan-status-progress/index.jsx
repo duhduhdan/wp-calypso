@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import classNames from 'classnames';
 import React from 'react';
 
 /**
@@ -47,9 +48,13 @@ const PlanStatusProgress = React.createClass( {
 	},
 
 	render() {
+		const classes = classNames( 'plan-status-progress', {
+			'is-expiring': this.getDaysUntilExpiry() < 6
+		} );
+
 		return (
 			<CompactCard>
-				<div className="plan-status-progress">
+				<div className={ classes }>
 					<div className="plan-status-progress__time-until-expiry">
 						{ this.renderDaysRemaining() }
 					</div>

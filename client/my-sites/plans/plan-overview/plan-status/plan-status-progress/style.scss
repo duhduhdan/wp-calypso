@@ -2,6 +2,16 @@
 	display: flex;
 	flex-wrap: wrap;
 	margin-left: -24px;
+
+	&.is-expiring {
+		.plan-status-progress__time-until-expiry {
+			color: $alert-red;
+		}
+
+		.progress-bar__progress {
+			background-color: $alert-red;
+		}
+	}
 }
 
 .plan-status-progress__progress-bar,
