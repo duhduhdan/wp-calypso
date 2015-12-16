@@ -8,6 +8,7 @@ import React from 'react';
  */
 import PlanFeature from './feature'
 import SectionHeader from 'components/section-header';
+import { isBusiness } from 'lib/products-values';
 
 const PlanFeatures = React.createClass( {
 	propTypes: {
@@ -15,6 +16,26 @@ const PlanFeatures = React.createClass( {
 			React.PropTypes.object,
 			React.PropTypes.bool
 		] ).isRequired
+	},
+
+	renderBusinessFeatures() {
+		return (
+			<span>
+				<PlanFeature
+					button={ { label: this.translate( 'Setup eCommerce' ), href: `/plugins/${ this.props.selectedSite.slug }` } }
+					description={ this.translate( 'Connect your Shopify, Ecwid, or Gumroad account to your WordPress.com site.' ) }
+					heading={ this.translate( 'eCommerce Integration' ) } />
+
+				<PlanFeature
+					button={ { label: this.translate( 'Setup Analytics' ), href: `/settings/analytics/${ this.props.selectedSite.slug }` } }
+					description={ this.translate( 'Connect your Google Analytics account.' ) }
+					heading={ this.translate( 'Google Analytics Integration' ) } />
+
+				<PlanFeature
+					description={ this.translate( 'You have access to dozens of our best themes available.' ) }
+					heading={ this.translate( 'Unlimited Premium Themes' ) } />
+			</span>
+		);
 	},
 
 	render() {
@@ -32,19 +53,7 @@ const PlanFeatures = React.createClass( {
 					description={ this.translate( "Change your theme's fonts, colors, and CSS for a unique look." ) }
 					heading={ this.translate( 'Custom Design' ) } />
 
-				<PlanFeature
-					button={ { label: this.translate( 'Setup eCommerce' ), href: `/plugins/${ this.props.selectedSite.slug }` } }
-					description={ this.translate( 'Connect your Shopify, Ecwid, or Gumroad account to your WordPress.com site.' ) }
-					heading={ this.translate( 'eCommerce Integration' ) } />
-
-				<PlanFeature
-					button={ { label: this.translate( 'Setup Analytics' ), href: `/settings/analytics/${ this.props.selectedSite.slug }` } }
-					description={ this.translate( 'Connect your Google Analytics account.' ) }
-					heading={ this.translate( 'Google Analytics Integration' ) } />
-
-				<PlanFeature
-					description={ this.translate( 'You have access to dozens of our best themes available.' ) }
-					heading={ this.translate( 'Unlimited Premium Themes' ) } />
+				{ isBusiness( this.props.selectedSite.plan ) ? this.renderBusinessFeatures() : null }
 
 				<PlanFeature
 					description={ this.translate( 'WordPress.com ads will not display on your site.' ) }
