@@ -20,6 +20,9 @@ import wpcomLib from 'lib/wp';
 import notices from 'notices';
 import siteList from 'lib/sites-list';
 import analytics from 'analytics';
+import FormTextarea from 'components/forms/form-textarea';
+import FormLabel from 'components/forms/form-label';
+import FormButton from 'components/forms/form-button';
 
 /**
  * Module variables
@@ -260,7 +263,13 @@ module.exports = React.createClass( {
 		}
 
 		if ( ! ( olark.isOlarkReady && sitesInitialized ) ) {
-			return <div className="help-contact__placeholder" />;
+			return (
+				<div className="help-contact__placeholder">
+					<FormLabel className="help-contact__label">{ this.translate( 'What are you trying to do?' ) }</FormLabel>
+					<FormTextarea className="help-contact__textarea"/>
+					<FormButton type="button" disabled={true} className="help-contact__button">{ this.translate( 'Contact us' ) }</FormButton>
+				</div>
+			);
 		}
 
 		if ( olark.details.isConversing && olark.isOperatorAvailable ) {
