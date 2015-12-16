@@ -11,8 +11,7 @@ import page from 'page';
 import Button from 'components/button';
 import { cartItems } from 'lib/cart-values';
 import CompactCard from 'components/card/compact';
-import PlanStatusProgress from './progress';
-import ProgressBar from 'components/progress-bar';
+import PlanStatusProgress from './plan-status-progress';
 import { isPremium, isBusiness } from 'lib/products-values';
 import * as upgradesActions from 'lib/upgrades/actions';
 

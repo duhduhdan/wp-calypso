@@ -1,0 +1,18 @@
+.plan-status-progress {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -24px;
+}
+
+.plan-status-progress__progress-bar,
+.plan-status-progress__time-until-expiry {
+	margin-left: 24px;
+}
+
+.plan-status-progress__progress-bar {
+	flex: 1 0 6em;
+}
+
+.plan-status-progress__time-until-expiry {
+	font-weight: 700;
+}

@@ -2,14 +2,12 @@
  * External dependencies
  */
 import React from 'react';
-import classNames from 'classnames';
 
 /**
  * Internal dependencies
  */
 import CompactCard from 'components/card/compact';
 import ProgressBar from 'components/progress-bar';
-import { isPremium, isBusiness } from 'lib/products-values';
 
 const PlanStatusProgress = React.createClass( {
 	propTypes: {
@@ -51,12 +49,12 @@ const PlanStatusProgress = React.createClass( {
 	render() {
 		return (
 			<CompactCard>
-				<div className="plan-status__progress">
-					<div className="plan-status__time-until-expiry">
+				<div className="plan-status-progress">
+					<div className="plan-status-progress__time-until-expiry">
 						{ this.renderDaysRemaining() }
 					</div>
 
-					<div className="plan-status__progress-bar">
+					<div className="plan-status-progress__progress-bar">
 						{ this.renderProgressBar() }
 					</div>
 				</div>
