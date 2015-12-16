@@ -129,7 +129,7 @@ module.exports = React.createClass( {
 				<Button
 					href={ '/domains/add/' + site.slug }
 					onClick={ this.trackUpgradeClick }
-					className="is-magic"
+					
 				>
 					<Gridicon icon="plus" /> { this.translate( 'Add a Custom Address', { context: 'Site address, domain' } ) }
 				</Button>
@@ -391,7 +391,7 @@ module.exports = React.createClass( {
 						compact={ true }
 						onClick={ this.submitForm }
 						primary={ true }
-						className="is-magic"
+
 						type="submit"
 						disabled={ this.state.fetchingSettings || this.state.submittingForm }>
 							{ this.state.submittingForm
@@ -413,7 +413,7 @@ module.exports = React.createClass( {
 						compact={ true }
 						onClick={ this.submitForm }
 						primary={ true }
-						className="is-magic"
+
 						type="submit"
 						disabled={ this.state.fetchingSettings || this.state.submittingForm }>
 							{ this.state.submittingForm
@@ -438,7 +438,7 @@ module.exports = React.createClass( {
 								onClick={ this.submitForm }
 								primary={ true }
 								type="submit"
-								className="is-magic"
+
 								disabled={ this.state.fetchingSettings || this.state.submittingForm }>
 									{ this.state.submittingForm
 										? this.translate( 'Saving…' )
@@ -464,7 +464,7 @@ module.exports = React.createClass( {
 						compact={ true }
 						onClick={ this.submitForm }
 						primary={ true }
-						className="is-magic"
+
 						type="submit"
 						disabled={ this.state.fetchingSettings || this.state.submittingForm }>
 							{ this.state.submittingForm
